@@ -178,15 +178,13 @@ void Graphics::DrawTestTriangle()
 	//bind index buffer
 	pContext->IASetIndexBuffer(pIndexBuffer.Get(),DXGI_FORMAT_R16_UINT,0u);
 
-	//IA打头的装配器相关 绑定顶点数据到pipeline
+
 	//Bind vertex buffer to pipeline
 	const UINT stride = sizeof(Vertex);
 	const UINT offset = 0u;
-	//pContext->IASetVertexBuffers(0u,1u,&pVertexBuffer,&stride,&offset);
 	pContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
 
 	wrl::ComPtr<ID3DBlob> pBlob;
-
 	//begin ---  create pixel shader
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
 	GFX_THROW_INFO(D3DReadFileToBlob(L"PixelShader.cso", &pBlob));
